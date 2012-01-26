@@ -44,6 +44,12 @@ class GPXWaypoint( mod_geo.Location ):
 	symbol = None
 	type = None
 	comment = None
+	
+	'''
+	The following variables represent the precision rating of a GPS track point, DOP (Dilution Of Precision)
+	There are 3 different measurements of DOP available in the GPX schema: Horizontal DOP (hdop), Vertical DOP (vdop) and Position DOP (pdop)
+	The lower these values are the better.
+	'''
 	hdop = None
 	vdop = None
 	pdop = None
@@ -82,7 +88,9 @@ class GPXWaypoint( mod_geo.Location ):
 		return mod_utils.to_xml( 'wpt', attributes = { 'lat': self.latitude, 'lon': self.longitude }, content = content )
 	
 	def get_max_dop(self):
-	    # only care about the max dop for filtering, no need to go into too much detail
+		'''
+		This method returns the maximum value of Dilution Of Precision (DOP) among Horizontal, Vertical and Position DOP if available, we only care about the max DOP for filtering, no need to go into too much detail
+		'''
 	    return _get_max(hdop,vdop,pdop)
 	
 	def _get_max(*dops):
