@@ -85,7 +85,7 @@ class Location:
 		
 	def get_max_dop(self):
 	    # only care about the max dop for filtering, no need to go into too much detail
-	    return _get_max(hdop,vdop,pdop)
+	    return self._get_max(hdop,vdop,pdop)
 	
 	def _get_max(*dops):
 	    max_dop = None
