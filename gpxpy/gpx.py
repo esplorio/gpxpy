@@ -56,7 +56,7 @@ class GPXWaypoint( mod_geo.Location ):
 		self.symbol = symbol
 		self.type = type
 		self.comment = comment
-		
+
 	def __str__( self ):
 		return '[wpt{%s}:%s,%s@%s]' % ( self.name, self.latitude, self.longitude, self.elevation )
 
