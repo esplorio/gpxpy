@@ -69,12 +69,32 @@ class Location:
 	latitude = None
 	longitude = None
 	elevation = None
-
-	def __init__( self, latitude, longitude, elevation = None ):
+	
+	hdop = None
+	vdop = None
+	pdop = None
+	
+	def __init__( self, latitude, longitude, elevation = None, hdop = None, vdop = None, pdop = None ):
 		self.latitude = latitude
 		self.longitude = longitude
 		self.elevation = elevation
-
+		
+		self.hdop = hdop
+		self.vdop = vdop
+		self.pdop = pdop
+		
+	def get_max_dop(self):
+	    # only care about the max dop for filtering, no need to go into too much detail
+	    return _get_max(hdop,vdop,pdop)
+	
+	def _get_max(*dops):
+	    max_dop = None
+	    for dop in dops:
+		if dop is not None:
+		    if (max_dop is None) or ((max_dop is not None) and (dop > max_dop)):
+			max_dop = dop
+	    return max_dop
+		
 	def has_elevation( self ):
 		return self.elevation or self.elevation == 0
 
