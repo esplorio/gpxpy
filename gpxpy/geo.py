@@ -85,14 +85,14 @@ class Location:
 		
 	def get_max_dop(self):
 	    # only care about the max dop for filtering, no need to go into too much detail
-	    return self._get_max(hdop,vdop,pdop)
+	    return self._get_max(self.hdop,self.vdop,self.pdop)
 	
 	def _get_max(*dops):
 	    max_dop = None
 	    for dop in dops:
-		if dop is not None:
-		    if (max_dop is None) or ((max_dop is not None) and (dop > max_dop)):
-			max_dop = dop
+			if dop is not None:
+				if (max_dop is None) or ((max_dop is not None) and (dop > max_dop)):
+					max_dop = dop
 	    return max_dop
 		
 	def has_elevation( self ):
